@@ -1,0 +1,41 @@
+{
+  "name": "rollup-plugin-postprocess",
+  "version": "1.0.0",
+  "description": "Find-and-replace postprocessing for Rollup output.",
+  "main": "dist/rollup-plugin-postprocess.js",
+  "module": "dist/rollup-plugin-postprocess.m.js",
+  "source": "postprocess.js",
+  "scripts": {
+    "prepare": "microbundle --external all --target node --format cjs,es --no-compress",
+    "test": "eslint postprocess.js && npm run -s prepare && node test",
+    "release": "npm run -s prepare && npm test && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags && npm publish"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-developit",
+    "rules": {
+      "no-cond-assign": 0,
+      "prefer-spread": 0
+    }
+  },
+  "keywords": [
+    "rollup",
+    "plugin",
+    "replace",
+    "post replace"
+  ],
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "repository": "developit/rollup-plugin-postprocess",
+  "author": "Jason Miller <jason@developit.ca> (http://jasonformat.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^4.13.1",
+    "eslint-config-developit": "^1.1.1",
+    "microbundle": "^0.3.0"
+  },
+  "dependencies": {
+    "magic-string": "^0.22.4"
+  }
+}
