@@ -30,6 +30,37 @@ export default {
 ```
 
 
+## Complex Example
+
+This example is more practical. Rollup places exports at the end of your bundle, which can often create single-use variables that Uglify does not collapse.  Let's implement a find & replace that "moves" the export inline to save some bytes.
+
+In this example, we'll make use of the fact that find/replacement pairs are executed in sequence. The first pair is used both to remove the existing export statement _and_ to find the export type & identifier. By the time the second find/replace pair is processed, it can make use of the values found in the first pass.
+
+```js
+import postprocess from 'rollup-plugin-postprocess';
+
+let name, exportPrefix;
+export default {
+    plugins: [
+        postprocess([
+            [
+                /(module\.exports\s*=\s*|export\s*default\s*)([a-zA-Z$_][a-zA-Z0-9$_]*)[;,]?/,
+                (str, prefix, id) => {
+                    name = id;
+                    exportPrefix = prefix;
+                    // returning nothing is the same as an empty string
+                }
+            ],
+            [
+                /^function\s([a-zA-Z$_][a-zA-Z0-9$_]*)/,
+                (str, id) => id==name ? `${exportPrefix} function` : str
+            ]
+        ])
+    ]
+};
+```
+
+
 ## License
 
 [MIT](https://oss.ninja/mit/developit)
