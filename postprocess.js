@@ -6,9 +6,9 @@ const replacer = (str, index) => currentToken[index];
 export default function postprocess(allReplacements) {
 	return {
 		name: 'postprocess',
-		transformBundle(code, { sourceMap }) {
+		transformBundle(code, { sourceMap, format }) {
 			let str = new MagicString(code);
-			let replacements = typeof allReplacements==='function' ? allReplacements({ code, sourceMap }) : allReplacements;
+			let replacements = typeof allReplacements==='function' ? allReplacements({ code, sourceMap, format }) : allReplacements;
 
 			for (let i=0; i<replacements.length; i++) {
 				let [find, replace=''] = replacements[i];
