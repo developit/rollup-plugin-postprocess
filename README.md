@@ -1,5 +1,7 @@
 # rollup-plugin-postprocess
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/developit/rollup-plugin-postprocess.svg)](https://greenkeeper.io/)
+
 Apply regex find-and-replace postprocessing to your Rollup bundle.
 
 ## Installation
