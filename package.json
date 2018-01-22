@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-postprocess",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Find-and-replace postprocessing for Rollup output.",
   "main": "dist/rollup-plugin-postprocess.js",
   "module": "dist/rollup-plugin-postprocess.m.js",
