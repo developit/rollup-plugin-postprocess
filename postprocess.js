@@ -32,9 +32,9 @@ export default function postprocess(allReplacements) {
 				}
 			}
 
-			return sourceMap===false ? str.toString() : {
+			return {
 				code: str.toString(),
-				map: str.generateMap({ hires: true })
+				map: sourceMap===false ? null : str.generateMap({ hires: true })
 			};
 		}
 	};
