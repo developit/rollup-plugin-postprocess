@@ -36,6 +36,6 @@
     "microbundle": "^0.4.1"
   },
   "dependencies": {
-    "magic-string": "^0.22.4"
+    "magic-string": "^0.25.0"
   }
 }
